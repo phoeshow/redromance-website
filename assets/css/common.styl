@@ -1,0 +1,49 @@
+@import './variables.styl'
+@import './mini-skeleton.styl'
+
+
+main.page
+  width: 100%
+  display: flex
+  min-height: 100vh
+  flex-direction: column
+
+  background: $pageBgColor
+
+  >header
+    background: linear-gradient(180deg, #261812 , #1a0f0b)
+    color: #fff
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5)
+    border-bottom: 1px solid #000
+    display: flex
+    position: relative
+    margin-bottom: 50px
+
+    .logo_wrap
+      position: absolute
+      background-image: url("http://cdn.phoeshow.com/Icon_of_Blood.png")
+      background-size: contain
+      background-repeat: no-repeat
+      height:150px
+      width:100px
+      z-index:100
+      background-position: center
+    .title
+      margin-left: 100px + 12px
+  >section.content
+    flex:1
+    color: #fff
+
+  footer
+    color: white
+
+  @media (min-width:$screen-sm-min)
+    header
+      padding: 0 20px;
+  @media (min-width:$screen-md-min)
+    header
+      padding: 0 25px;
+  @media (min-width:$screen-lg-min)
+    header
+      padding: 0 30px; 
+
