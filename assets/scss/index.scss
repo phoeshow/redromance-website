@@ -1,7 +1,8 @@
-body * {
-  box-sizing: border-box;
+body {
+  * {
+    box-sizing: border-box;
+  }
 }
-
 .page {
   min-height: 100vh;
   background-color: aqua;
@@ -9,7 +10,7 @@ body * {
 
 .page-header {
   background-color: bisque;
-}
-.page-header .page-header_content {
-  display: flex;
+  .page-header_content {
+    display: flex;
+  }
 }

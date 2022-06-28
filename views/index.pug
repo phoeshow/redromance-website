@@ -5,25 +5,30 @@ html(lang="zh")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title #{title}
-    link(rel="stylesheet", href="https://cdn.bootcdn.net/ajax/libs/normalize/8.0.1/normalize.min.css")
-    link(rel="stylesheet", href="/css/index.css")
-    link(rel="stylesheet", href="/css/common.css")
+    link(rel="stylesheet", href="https://cdn.staticfile.org/bootstrap/5.2.0-beta1/css/bootstrap.min.css")
+    link(rel="stylesheet", href="css/index.css")
 
   body
-    main(class="page")
-      header(class="")
-        div(class="logo_wrap")
-        h1(class="title") Red Romance
-      section(class="content") 
-        p 这是我随便写的
+    header(class="navbar navbar-expand-md navbar-dark page-header sticky-top")
+      nav(class="container-lg flex-wrap")
+        button(class="navbar-toggler" type="button" data-bs-toggle="collapse")
+          span(class="navbar-toggler-icon")
+        h1 Red Romance
+    main(class="container-fluid page")
+      //- header(class="")
+      //-   div(class="logo_wrap")
+      //-   h1(class="title") Red Romance
+      //- section(class="content") 
+      //-   p 这是我随便写的，我随便改点
           
-        a(href="www.baidu.com") test
+      //-   a(href="www.baidu.com") test
 
-        div 
-          button(class="button button-primary" id="test") click me
+      //-   div 
+      //-     button(class="btn btn-primary" id="test") click me
 
 
-      footer 
-        p 这是个脚标
+      //- footer 
+      //-   p 这是个脚标
 
-      script(src="/js/bundle.js") 
+      script(src="https://cdn.staticfile.org/bootstrap/5.2.0-beta1/js/bootstrap.bundle.min.js") 
+      //- script(src="/js/bundle.js") 
