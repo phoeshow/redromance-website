@@ -1,7 +1,5 @@
-body {
-  * {
-    box-sizing: border-box;
-  }
+body * {
+  box-sizing: border-box;
 }
 
 main.page {
@@ -13,21 +11,18 @@ main.page {
 .content-container {
   flex: 1;
   background-color: #fafafa;
-
   display: flex;
   flex-direction: column;
-
-  .page-content {
-    flex: 1;
-    padding: 24px;
-    width: 100%;
-    max-width: 960px;
-    margin: 0 auto;
-    border-left: 1px solid #eee;
-    border-right: 1px solid #eee;
-
-    background-color: #fff;
-  }
+}
+.content-container .page-content {
+  flex: 1;
+  padding: 24px;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+  background-color: #fff;
 }
 
 .rr-bg-800 {

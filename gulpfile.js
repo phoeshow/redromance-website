@@ -9,14 +9,15 @@ const { rollup } = require('rollup');
 const { nodeResolve } = require('@rollup/plugin-node-resolve');
 const { babel } = require('@rollup/plugin-babel');
 const { terser } = require('rollup-plugin-terser');
-const gulpBabel = require('gulp-babel');
 const nodemon = require('nodemon');
 const autoPrefixer = require('gulp-autoprefixer');
+
+const assetsVersion = require('./package.json').version;
 
 dotenv.config();
 
 function clean() {
-  return del(['public/css/**/*', 'public/js/**/*']);
+  return del(['public/**/*', 'dist/**/*']);
 }
 
 const taskStyle = () => {
@@ -24,13 +25,7 @@ const taskStyle = () => {
     .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
     .pipe(autoPrefixer())
-    .pipe(dest('public/css'));
-};
-
-const taskServerApp = async () => {
-  return src('src/**', { since: lastRun(taskServerApp) })
-    .pipe(gulpBabel({ presets: ['@babel/env'] }))
-    .pipe(dest('dist'));
+    .pipe(dest(`public/${assetsVersion}/css`));
 };
 
 const taskClientApp = async () => {
@@ -38,15 +33,9 @@ const taskClientApp = async () => {
     input: 'assets/js/index.js',
     plugins: [nodeResolve(), babel({ babelHelpers: 'bundled' })],
   });
-
   await Promise.all([
     bundle.write({
-      file: 'public/js/bundle.js',
-      format: 'umd',
-      name: 'bundle',
-    }),
-    bundle.write({
-      file: 'public/js/bundle.min.js',
+      file: `public/${assetsVersion}/js/bundle.min.js`,
       format: 'umd',
       name: 'bundle',
       plugins: [terser()],
@@ -60,8 +49,8 @@ const taskDev = async () => {
 
   nodemon({
     restartable: 'rs',
-    watch: ['dist/', 'views/'],
-    exec: 'node dist/index.js',
+    watch: ['server/', 'views/'],
+    exec: 'node server/index.js',
     ext: 'js, pug',
   });
 
@@ -80,15 +69,8 @@ const taskDev = async () => {
   watch('assets/scss/**/*.scss', { ignoreInitial: false }, taskStyle);
   // 前端脚本文件
   watch('assets/js/**/*.js', { ignoreInitial: false }, taskClientApp);
-  // 服务端程序
-  watch(['src/**', '!src/**/*.md'], { ignoreInitial: false }, taskServerApp);
 };
 
 exports.watch = taskDev;
 
-exports.taskServerApp = taskServerApp;
-
-exports.default = series(
-  clean,
-  parallel(taskClientApp, taskServerApp, taskStyle)
-);
+exports.default = series(clean, parallel(taskClientApp, taskStyle));

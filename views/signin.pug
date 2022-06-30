@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  section(class="container-fluid mt-5" id="app")
+    form(class="user-form mx-auto px-3 py-3" @submit.prevent="signin")
+      h3(class="mb-3") 申请入会
+      div(class="mb-3")
+        label(class="form-label" for="username") 用户名
+        input(class="form-control" id="username" v-model="username")
+      div(class="mb-3")
+        label(class="form-label" for="password") 密码
+        input(class="form-control" type="password" id="password" v-model="password")
+      div(v-bind:class="['form-text mb-3', {hasError:errorFeedback}]") {{message}}
+      div(class="mb-3")
+        button(class="btn btn-primary" v-bind:disabled="disable" type="submit" id="signBtn") 提交申请
+
+append headscript
+  script(src="https://cdn.staticfile.org/vue/2.6.11/vue.js") 
+
+append footscript
+  script(src=`/${assetsVersion}/js/user.min.js`) 

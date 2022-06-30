@@ -1,0 +1,26 @@
+doctype html
+html(lang="zh-CN" dir="ltr")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(name="author" content="Phoeshow")
+    meta(name="description", content="魔兽世界-红浪漫公会网站")
+    meta(name="keywords", content="WoW, 魔兽世界,怀旧服,红浪漫公会")
+    //- link(rel="stylesheet", href="https://cdn.staticfile.org/normalize/0/normalize.css")
+    link(rel="stylesheet", href="https://cdn.staticfile.org/bootstrap/5.2.0-beta1/css/bootstrap.min.css")
+    link(rel="stylesheet", href=`/${assetsVersion}/css/index.css`)
+    block headscript
+    title Red Romance 公会
+  body
+    main(class="page")
+      include includes/header
+
+      section(class="content-container")
+        section(class="page-content")
+          block content
+
+      include includes/footer
+    
+    block footscript
+      script(src="https://cdn.staticfile.org/bootstrap/5.2.0-beta1/js/bootstrap.min.js") 
