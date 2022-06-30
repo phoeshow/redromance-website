@@ -41,7 +41,7 @@ async function startServer() {
       })
     );
 
-    if ((process.env.NODE_ENV = 'development')) {
+    if (process.env.NODE_ENV === 'development') {
       app.use(express.static(paths.publicPath));
 
       const liveReloadServer = livereload.createServer();
